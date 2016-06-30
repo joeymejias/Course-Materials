@@ -17,7 +17,7 @@ public class ToastActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // do something here when the "buy" button is clicked
-                Log.d("TAG", "onClick: buy");
+                Log.d("ToastActivity", "Buy was clicked!");
             }
         });
 
@@ -25,6 +25,7 @@ public class ToastActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // do something here when the "like" button is clicked
+                Toast.makeText(ToastActivity.this, "like was clicked", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -39,6 +40,14 @@ public class ToastActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // do something here when the "send" button is clicked
+            }
+        });
+
+        findViewById(R.id.joeyButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // do something here when the "Joey" button is clicked
+
             }
         });
     }
