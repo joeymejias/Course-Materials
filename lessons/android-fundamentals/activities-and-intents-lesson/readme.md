@@ -37,6 +37,7 @@ creator:
 
 Previously, we learned about the UI elements that make up a screen in an app, and how we interact with it in the Java code. Notice how the file was called MainActivity.java? Most of the time, you can think of an Activity as a screen of your app - that's all!
 
+
 ## Introduction: What is an Activity? What is a Manifest? (10 mins)
 
 The definition of an activity is something that is done for a particular purpose.
@@ -81,6 +82,7 @@ For example, a `ComposeEmailActivity` allows the user to compose and send an ema
 
 This is the idea behind Intents in Android. Intents are messages you send between app components, like Activities, usually with the goal of doing something.
 
+
 The following "dialogue" is happening:
 
 - EmailListActivity: "Hey, you clicked one of your emails. What's up?"
@@ -103,14 +105,17 @@ You create a new Intent object, and you pass it two parameters: The activity you
 
 The method, `startActivity()`, starts the intended activity immediately.
 
+
 ## Independent Practice: Starting an activity with an Intent (10 mins)
 
 Using the code from the previous demo, add a button to the app's main activity. Set an `onClickListener` to that button and have the listener start one of the other activities. Run the app in a virtual device, and click on the button to start the new activity.
 
+Note: A complete example of this is found in the [solution code folder](solution-code).
 
 ## Introduction: Sending data from one Activity to another Activity (10 mins)
 
 Intents are how Activities communicate with each other. In the previous example, we started an activity to compose an email by clicking an email in the list. However, how does the ReadEmailActivity know what email to show?
+
 
 When you start a new activity, it is shown with the default settings that you give it. However, some activities need to receive a bit more information. This info is sent from the original activity to the one you are starting.
 
@@ -124,6 +129,7 @@ When creating new intents, you can also give it *extra* data. Here's an example:
 	startActivity(Intent);
 
 ```
+
 
 The Intent class has a handful of helper methods you can call to get and store extra data. The main one is `putExtra()`, which takes two parameters: a String that gives the data a name, and the data itself.
 
@@ -150,6 +156,7 @@ Here we are hard-coding the Keys, what do you think we could do as an alternativ
 
 ## Guided Practice: Sending Data between Activities (15 mins)
 
+
 With the person next to you, go ahead and start a new Android project with a empty main activity. Do the following:
 
 - Add a new Activity, and call it `EchoActivity`.
@@ -158,6 +165,7 @@ With the person next to you, go ahead and start a new Android project with a emp
 - In the `EchoActivity`, the value is plucked from the intent and put in the TextView.
 
 #### Independent Practice: Add two numbers (15 mins)
+
 
 Now, with the person next to you, without stopping every two minutes, do the following:
 
@@ -180,6 +188,7 @@ Open the Starter-Code and follow along.
 #### Second Activity
 
 First, let's look at the second Activity, or the one you are passing the data back from. In this Activity, we press a button, and it passes the values from the two EditTexts back to the Main Activity.
+
 
 Just like when we're starting an Activity, we also pass data back using an Intent and extras.
 
@@ -206,6 +215,7 @@ First we create an intent, then put the two Strings in as extras. The next two l
 
 Now that we've finished the Second Activity, let's return to the Main Activity. We have two steps to complete.
 
+
 We need to start the Second Activity and get the results from the Second Activity.
 
 Starting the Activity is almost identical to how we previously did it, with one exception:
@@ -225,6 +235,7 @@ You can assign any integer value that is **greater than 0**.
 
 Next, we have to get the results from the Second Activity. Whenever you return from an Activity that is expecting results, the `onActivityResult` is automatically called.
 
+
 ```java
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 	// Check what request we're responding to...
@@ -243,15 +254,19 @@ The first parameter is the static variable we passed in when starting the activi
 
 Since we could be starting different Activities from our Main Activity, we first have to check that our result is coming from the `NAME_REQUEST` activity, then we have to check to make sure the results are valid. After that, we can retrieve the data like normal and use it however we want.
 
+
 ## Independent Practice: startActivityForResult (10 mins)
 
 **Do this activity with a partner**
 
-This practice is going to be similar to the addition one but modified: instead of passing values from the first activity to the second, we are going to give the user two options in the main activity, add and subtract.
+Instead of passing values from the first activity to the second, we are going to give the user two options in the main activity, add and subtract.
 
-If the user chooses add, they are taken to a different activity with two EditTexts where they type 2 numbers, and the sum is returned in the result of the main activity where it is displayed after pressing a calculate button.
+If the user chooses add, they are taken to a calculate activity with two EditTexts where they type 2 numbers, and a calculate button. The sum of the numbers from the calculate activities is displayed on the main activity after pressing the calculate button.
 
-If the user chooses subtract, the same steps occur, except the difference is returned to the main activity.
+**Bonus:**
+
+If the user chooses subtract, the same steps occur, except the difference is displayed in the main activity.
+
 
 #### Conclusion (5 mins)
 
