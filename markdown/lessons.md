@@ -1,8 +1,10 @@
 # Lessons
 
-- [Intro](lessons/intro.md)
-- [Command Line & Git](lessons/git.md)
-- [Java Essentials](lessons/java.md)
-- [Android Fundamentals](lessons/android_fundamentals.md)
-- [Android User Interface](lessons/android_UI.md)
-- [Product Development](lessons/product_dev.md)
+- [Orientation and Review Materials](lessons/orientation-and-review-materials.md)
+- [Workflow and Developer Tools](lessons/workflow-and-dev-tools.md)
+- [Programming Fundamentals in Java](lessons/programming-fundamentals-in-java.md)
+- [User Interface](lessons/user-interface.md)
+- [Activities and Fragments](lessons/activities-and-fragments.md)
+- [Databases](lessons/databases.md)
+- [Product Development](lessons/product-development.md)
+- [Computer Science and Interview Prep](lessons/computer-science-and-interview-prep.md)
