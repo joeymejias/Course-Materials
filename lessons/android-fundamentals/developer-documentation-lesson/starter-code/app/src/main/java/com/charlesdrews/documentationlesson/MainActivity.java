@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
+    EditText text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 text.setText("You clicked the button!");
 
                 // change the button's color
-                view.setBackgroundColor(R.color.colorAccent);
+                view.setBackgroundColor(getResources().getColor(R.color.colorAccent));
             }
         });
 
