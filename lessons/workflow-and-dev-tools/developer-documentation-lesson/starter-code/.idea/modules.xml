@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/starter-code.iml" filepath="$PROJECT_DIR$/starter-code.iml" />
+=======
+      <module fileurl="file://$USER_HOME$/Dropbox/Charlie/GA/ADI-Gelato/Course-Materials/lessons/workflow-and-dev-tools/developer-documentation-lesson/starter-code/app/app.iml" filepath="$USER_HOME$/Dropbox/Charlie/GA/ADI-Gelato/Course-Materials/lessons/workflow-and-dev-tools/developer-documentation-lesson/starter-code/app/app.iml" />
+      <module fileurl="file://$USER_HOME$/Dropbox/Charlie/GA/ADI-Gelato/Course-Materials/lessons/workflow-and-dev-tools/developer-documentation-lesson/starter-code/starter-code.iml" filepath="$USER_HOME$/Dropbox/Charlie/GA/ADI-Gelato/Course-Materials/lessons/workflow-and-dev-tools/developer-documentation-lesson/starter-code/starter-code.iml" />
+>>>>>>> upstream/master
     </modules>
   </component>
 </project>

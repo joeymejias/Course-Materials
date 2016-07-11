@@ -8,14 +8,24 @@
         <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.10" />
         <option name="modules">
           <set>
+<<<<<<< HEAD
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+=======
+            <option value="$USER_HOME$/Dropbox/Charlie/GA/ADI-Gelato/Course-Materials/lessons/workflow-and-dev-tools/developer-documentation-lesson/starter-code" />
+            <option value="$USER_HOME$/Dropbox/Charlie/GA/ADI-Gelato/Course-Materials/lessons/workflow-and-dev-tools/developer-documentation-lesson/starter-code/app" />
+>>>>>>> upstream/master
           </set>
         </option>
         <option name="myModules">
           <set>
+<<<<<<< HEAD
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+=======
+            <option value="$USER_HOME$/Dropbox/Charlie/GA/ADI-Gelato/Course-Materials/lessons/workflow-and-dev-tools/developer-documentation-lesson/starter-code" />
+            <option value="$USER_HOME$/Dropbox/Charlie/GA/ADI-Gelato/Course-Materials/lessons/workflow-and-dev-tools/developer-documentation-lesson/starter-code/app" />
+>>>>>>> upstream/master
           </set>
         </option>
       </GradleProjectSettings>
