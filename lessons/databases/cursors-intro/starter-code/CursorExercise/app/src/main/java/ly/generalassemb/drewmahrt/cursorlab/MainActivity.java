@@ -1,12 +1,22 @@
 package ly.generalassemb.drewmahrt.cursorlab;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
+    private ListView mListView;
+    private ArrayList<String> mList;
+    private ArrayAdapter mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Start your code here
+
+        Cursor cursor = db.query("tbl_books", null, null, null, null, null, "title" + " DESC", null);
+
+        mListView = (ListView) findViewById(R.id.bookList);
+        mList = new ArrayList<String>();
+
+        if(cursor.moveToLast()){
+            while(!cursor.isBeforeFirst()){
+                mList.add(cursor.getString(0) + " - " + cursor.getString(1) + " - " + cursor.getString(2));
+                cursor.moveToPrevious();
+            }
+        }
+
+        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mList);
+        mListView.setAdapter(mAdapter);
+
+        cursor.close();
 
     }
 }
