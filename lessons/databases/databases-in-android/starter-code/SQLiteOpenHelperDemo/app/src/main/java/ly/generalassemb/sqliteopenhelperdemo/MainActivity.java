@@ -30,21 +30,29 @@ public class MainActivity extends AppCompatActivity {
         mAddGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String gameName = mGameNameEditText.getText().toString();
+                int gameYear = Integer.parseInt(mGameYearEditText.getText().toString());
 
+                DatabaseHelper.getInstance(MainActivity.this).addFavorite(gameName, gameYear);
+                Toast.makeText(MainActivity.this, "Added: " + gameName + "" + gameYear + ".", Toast.LENGTH_SHORT).show();
             }
         });
 
         mDeleteGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String gameName = mGameNameEditText.getText().toString();
 
+                DatabaseHelper.getInstance(MainActivity.this).deleteGameByName(gameName);
+                Toast.makeText(MainActivity.this, "You deleted " + gameName + "!", Toast.LENGTH_SHORT).show();
             }
         });
 
         mGetGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String gameName = mGameNameEditText.getText().toString();
+                mTextView.setText("Game count for " + gameName + ": " + DatabaseHelper.getInstance(MainActivity.this).getGameCount(gameName));
             }
         });
     }
