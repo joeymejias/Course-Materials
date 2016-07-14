@@ -14,6 +14,12 @@ public class SearchResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
 
-
+        if(Intent.ACTION_SEARCH.equals(getIntent().getAction())){
+            String query = getIntent().getStringExtra(SearchManager.QUERY);
+            int num = NumbersSQLiteHelper.getInstance(this).searchNumbers(query).getCount();
+            String finalString = "Number of " + query + "s in the database: " + num;
+            TextView textView = (TextView) findViewById(R.id.textView);
+            textView.setText(finalString);
+        }
     }
 }
