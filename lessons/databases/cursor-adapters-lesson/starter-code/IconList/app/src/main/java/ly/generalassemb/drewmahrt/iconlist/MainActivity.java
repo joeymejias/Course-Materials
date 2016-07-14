@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         mListView.setAdapter(adapter);
-        cursor.close();
+
     }
 
     private int getDrawableValue(String icon){
