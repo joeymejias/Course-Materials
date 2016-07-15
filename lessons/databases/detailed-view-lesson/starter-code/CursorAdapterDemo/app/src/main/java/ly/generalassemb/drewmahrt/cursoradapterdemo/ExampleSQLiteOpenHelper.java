@@ -37,9 +37,17 @@ public class ExampleSQLiteOpenHelper extends SQLiteOpenHelper {
                     COL_ITEM_NAME + " TEXT, " +
                     COL_ITEM_DESCRIPTION + " TEXT )";
 
+    private static ExampleSQLiteOpenHelper sInstance;
 
-    public ExampleSQLiteOpenHelper(Context context) {
+    private ExampleSQLiteOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static ExampleSQLiteOpenHelper getInstance(Context context){
+        if (sInstance == null) {
+            sInstance = new ExampleSQLiteOpenHelper(context.getApplicationContext());
+        }
+        return sInstance;
     }
 
     @Override
@@ -66,5 +74,26 @@ public class ExampleSQLiteOpenHelper extends SQLiteOpenHelper {
                 null, // g. order by
                 null); // h. limit
         return cursor;
+    }
+
+    public String getColItemDescription(int id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor cursor = db.query(
+                EXAMPLE_LIST_TABLE_NAME,
+                new String[]{COL_ITEM_DESCRIPTION},
+                COL_ID + " = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null);
+
+        if(cursor.moveToFirst()){
+            int colIndex = cursor.getColumnIndex(COL_ITEM_DESCRIPTION);
+
+            return cursor.getString(colIndex);
+        } else {
+            return "There is no description ID";
+        }
     }
 }
