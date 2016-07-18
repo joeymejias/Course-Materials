@@ -36,4 +36,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("name", mName);
+        outState.putInt("timesSave", mTimesSaved);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        mName = savedInstanceState.getString("name");
+        mTimesSaved = savedInstanceState.getInt("timesSave");
+        mHelloTextView.setText("Hello "+mName+"! You will be saved into the bundle! "+mTimesSaved+" name(s) saved.");
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
 }

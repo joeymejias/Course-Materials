@@ -22,4 +22,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putString("timeStarted", mTimeStarted);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        mTimeStarted = savedInstanceState.getString("timeStarted");
+        TextView textView = (TextView)findViewById(R.id.text);
+        textView.setText(mTimeStarted);
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 }
