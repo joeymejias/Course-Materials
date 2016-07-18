@@ -41,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
     //TODO: uncomment the line below to test your solution for independent practice, change the
     // value of the return line to "return fullInfo"
 
-    //String fullInfo = helper.getFullInformation();
+    String fullInfo = helper.getFullInformation();
 
     text = (TextView) findViewById(R.id.text);
-    text.setText("Result: "+name);
+//    text.setText("Result: "+name);
+    text.setText("Result: "+fullInfo);
   }
 }

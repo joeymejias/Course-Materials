@@ -2,6 +2,7 @@ package generalassembly.yuliyakaleda.joins;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -85,11 +86,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
   public String getNameJoins() {
     //TODO: add the code from the lesson.
+    SQLiteDatabase db = getReadableDatabase();
+    String result = "";
+    String query = "SELECT " + COL_NAME + "," + COL_AGE + "," + COL_ADDRESS + "," + COL_SALARY + "," + COL_DEPARTMENT +
+            " FROM " + EMPLOYEE_TABLE_NAME +
+            " JOIN " + DEPARTMENT_TABLE_NAME +
+            " ON " + EMPLOYEE_TABLE_NAME + "." + COL_ID +
+            " = " + DEPARTMENT_TABLE_NAME + "." + COL_EMP_ID;
+//    String query = "SELECT " + COL_NAME +
+//            " FROM " + EMPLOYEE_TABLE_NAME +
+//            " JOIN " + DEPARTMENT_TABLE_NAME +
+//            " ON " + EMPLOYEE_TABLE_NAME + "." + COL_ID +
+//            " = " + DEPARTMENT_TABLE_NAME + "." + COL_EMP_ID;
+
+    Cursor cursor = db.rawQuery(query,null);
+//    String query = "SELECT" + COL_NAME +
+//            "FROM" + EMPLOYEE_TABLE_NAME +
+//            "JOIN" + DEPARTMENT_TABLE_NAME +
+//            "ON ? = ?";
+//    String[] args = {
+//            EMPLOYEE_TABLE_NAME + "." + COL_ID,
+//            DEPARTMENT_TABLE_NAME + "." + COL_EMP_ID};
+//    Cursor cursor = db.rawQuery(query,args);
+
+    if(cursor.moveToFirst()){
+      while(!cursor.isAfterLast()){
+        result += cursor.getString(cursor.getColumnIndex(COL_NAME)) + " ";
+        cursor.moveToNext();
+      }
+    }
+    cursor.close();
+    return result;
   }
 
-  //The method is the solution for the independent part of the lesso
-  //public String getFullInformation() {
+//  The method is the solution for the independent part of the lesso
+  public String getFullInformation() {
     //TODO: add the code from the lesson.
-  //}
+  SQLiteDatabase db = getReadableDatabase();
+  String result = "";
+  String query = "SELECT " + COL_NAME + "," + COL_AGE + "," + COL_ADDRESS + "," + COL_SALARY + "," + COL_DEPARTMENT +
+          " FROM " + EMPLOYEE_TABLE_NAME +
+          " JOIN " + DEPARTMENT_TABLE_NAME +
+          " ON " + EMPLOYEE_TABLE_NAME + "." + COL_ID +
+          " = " + DEPARTMENT_TABLE_NAME + "." + COL_EMP_ID;
+
+  Cursor cursor = db.rawQuery(query,null);
+
+  if(cursor.moveToFirst()){
+    while(!cursor.isAfterLast()){
+      result += cursor.getString(cursor.getColumnIndex(COL_NAME)) + " , who is " +
+              cursor.getString(cursor.getColumnIndex(COL_AGE)) + " years old, lives in " +
+              cursor.getString(cursor.getColumnIndex(COL_ADDRESS)) + " , earns $"
+              ;
+      cursor.moveToNext();
+    }
+  }
+  cursor.close();
+  return result;
+  }
 }
 
