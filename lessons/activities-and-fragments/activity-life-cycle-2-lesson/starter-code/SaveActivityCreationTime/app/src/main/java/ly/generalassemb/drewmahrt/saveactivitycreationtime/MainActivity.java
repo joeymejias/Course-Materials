@@ -18,8 +18,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTimeStarted = Calendar.getInstance().getTime().toString();
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+//        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
 
+        mTimeStarted = sharedPreferences.getString("timeStarted", null);
+
+        if (mTimeStarted == null){
+            mTimeStarted = Calendar.getInstance().getTime().toString();
+            Editor editor = sharedPreferences.edit();
+            editor.putString("timeStarted", mTimeStarted);
+            editor.commit();
+        }
         TextView textView = (TextView)findViewById(R.id.text);
         textView.setText(mTimeStarted);
     }

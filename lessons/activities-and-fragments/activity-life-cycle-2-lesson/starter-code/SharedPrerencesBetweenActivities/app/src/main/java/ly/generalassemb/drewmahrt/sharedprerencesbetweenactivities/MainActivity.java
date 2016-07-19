@@ -24,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Save the text from the EditText to the SharedPreferences
+                SharedPreferences sharedPreferences = getSharedPreferences("ly.generalassemb.drewmahrt.sharedprerencesbetweenactivities",Context.MODE_PRIVATE);
+                Editor editor = sharedPreferences.edit();
+                editor.putString("submittedText", editText.getText().toString());
+                editor.commit();
 
                 Intent i = new Intent(MainActivity.this,SecondActivity.class);
                 startActivity(i);

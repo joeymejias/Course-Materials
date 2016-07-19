@@ -31,4 +31,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mCountDownTimer.cancel();
+    }
+
+    @Override
+    protected void onResume() {
+        mCountDownTimer = new CountDownTimer(mTimeLeft, 1000) {
+            public void onTick(long millisUntilFinished) {
+                mTimeLeftTextView.setText("seconds remaining: " + millisUntilFinished / 1000);
+                mTimeLeft = millisUntilFinished;
+            }
+            public void onFinish() {
+                mTimeLeft = 0;
+                mTimeLeftTextView.setText("done!");
+            }
+        }.start();
+        super.onResume();
+    }
 }
