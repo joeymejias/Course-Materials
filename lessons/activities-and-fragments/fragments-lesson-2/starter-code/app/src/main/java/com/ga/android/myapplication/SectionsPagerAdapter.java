@@ -10,15 +10,19 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-    public SectionsPagerAdapter(FragmentManager fm) {
+    private AListFragment.OnListItemClickListener mListItemClickListener;
+
+    public SectionsPagerAdapter(FragmentManager fm,
+                                AListFragment.OnListItemClickListener listener) {
         super(fm);
+        mListItemClickListener = listener;
     }
 
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a AListFragment (defined as a static inner class below).
-        return AListFragment.newInstance(position);
+        return AListFragment.newInstance(position, mListItemClickListener);
     }
 
     @Override

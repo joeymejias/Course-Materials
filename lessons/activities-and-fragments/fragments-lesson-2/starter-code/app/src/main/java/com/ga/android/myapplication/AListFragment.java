@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -21,11 +22,21 @@ public class AListFragment extends Fragment {
 
     int listNumber = 0;
 
-    public static AListFragment newInstance(int sectionNumber) {
+    public interface OnListItemClickListener {
+        void onListItemClicked(int tabPosition, int listItemPosition);
+    }
+
+    private OnListItemClickListener mListItemClickListener;
+
+
+
+    public static AListFragment newInstance(int sectionNumber,
+                                            OnListItemClickListener listener) {
         AListFragment fragment = new AListFragment();
         Bundle args = new Bundle();
         args.putInt(LIST_NUMBER, sectionNumber);
         fragment.setArguments(args);
+        fragment.mListItemClickListener = listener;
         return fragment;
     }
 
@@ -67,5 +78,12 @@ public class AListFragment extends Fragment {
         }
 
         mListView.setAdapter(adapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                mListItemClickListener.onListItemClicked(listNumber, position);
+            }
+        });
     }
 }

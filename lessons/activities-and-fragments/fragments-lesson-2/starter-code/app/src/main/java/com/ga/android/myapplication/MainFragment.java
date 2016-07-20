@@ -33,6 +33,14 @@ public class MainFragment extends Fragment {
     private ViewPager mViewPager;
     private TabLayout tabLayout;
 
+    private AListFragment.OnListItemClickListener mListItemClickListener;
+
+    public static Fragment newInstance(AListFragment.OnListItemClickListener listener){
+        MainFragment fragment = new MainFragment();
+        fragment.mListItemClickListener = listener;
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,7 +62,7 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(), mListItemClickListener);
 
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
