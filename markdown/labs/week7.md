@@ -3,12 +3,12 @@
 &#x2705; = solution posted
 
 - Mon 8/1:
-  - [JSON Lab](https://github.com/ga-adi-nyc/json-lab)
+  - [JSON Lab](https://github.com/ga-adi-nyc/json-lab) &#x2705;
   - [HTTP & REST Lab](https://github.com/ga-adi-nyc/Http-Rest-Lab)
 
 
 - Tue 8/2:
-  - Retrieve Data from an API Lab
+  - [API Lab](https://github.com/ga-adi-nyc/api-lab)
   - Thread-Safe Lab: Image Processing
 
 
