@@ -19,7 +19,8 @@
 
     <provider
         android:name=".ProductsContentProvider"
-        android:authorities="generalassembly.yuliyakaleda.contentprovider.ProductsContentProvider" />
+        android:authorities="generalassembly.yuliyakaleda.contentprovider.ProductsContentProvider"
+        android:exported="true"/>
 
   </application>
 
