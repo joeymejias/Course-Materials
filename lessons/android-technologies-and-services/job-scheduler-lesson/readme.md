@@ -153,7 +153,8 @@ We also need to add this `Service` to our AndroidManifest.
 <service android:name=".MyJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"
             android:exported="true"/>
-            ```
+```
+
 ***
 
 <a name="guided-practice-setting-up-job-constraints-with-job-info-30-mins"></a>
@@ -204,6 +205,7 @@ JobInfo job = new JobInfo.Builder(12321,
  And now our job will be run every 5 seconds.
 
 ***
+
 <a name="guided-practice-testing"></a>
 ## Guided Practice: Testing that our job runs only under our conditions (15 mins)
 
