@@ -8,6 +8,9 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,9 +23,10 @@ import android.widget.SimpleCursorAdapter;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = MainActivity.class.getName();
+    public static final int NEWS_LOADER = 0;
 
     private ListView mArticlesListView;
     CursorAdapter mCursorAdapter;
@@ -43,14 +47,32 @@ public class MainActivity extends AppCompatActivity {
         mAccount = createSyncAccount(this);
         mArticlesListView = (ListView)findViewById(R.id.articles_list);
 
-        Cursor cursor = getContentResolver().query(NewsContentProvider.CONTENT_URI,null,null,null,null);
         mCursorAdapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_1,
-                cursor,new String[]{NewsDBHelper.COLUMN_TITLE},
+                null,new String[]{NewsDBHelper.COLUMN_TITLE},
                 new int[]{android.R.id.text1},
                 0);
 
         mArticlesListView.setAdapter(mCursorAdapter);
+        getSupportLoaderManager().initLoader(NEWS_LOADER, null, this);
+
+        Bundle settingsBundle = new Bundle();
+        settingsBundle.putBoolean(
+                ContentResolver.SYNC_EXTRAS_MANUAL, true);
+        settingsBundle.putBoolean(
+                ContentResolver.SYNC_EXTRAS_EXPEDITED, true);
+                /*
+                 * Request the sync for the default account, authority, and
+                 * manual sync settings
+                 */
+        ContentResolver.requestSync(mAccount, NewsContentProvider.AUTHORITY, settingsBundle);
+
+//        ContentResolver.setSyncAutomatically(mAccount,NewsContentProvider.AUTHORITY,true);
+//        ContentResolver.addPeriodicSync(
+//                mAccount,
+//                NewsContentProvider.AUTHORITY,
+//                Bundle.EMPTY,
+//                10);
     }
 
     /**
@@ -84,5 +106,26 @@ public class MainActivity extends AppCompatActivity {
              */
         }
         return newAccount;
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        switch (id){
+            case NEWS_LOADER:
+                return new CursorLoader(this, NewsContentProvider.CONTENT_URI,
+                        null, null, null, null);
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        mCursorAdapter.changeCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mCursorAdapter.changeCursor(null);
     }
 }
